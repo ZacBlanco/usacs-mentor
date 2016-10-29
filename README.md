@@ -5,3 +5,6 @@ This repository contains some code and mini-lessons on good software engineering
 
 Each folder in the root of the repository contains a new lesson and has a README which will describe code and any other content present for the lesson.
 
+## Mini-Lessons
+
+- [Introduction to Git](intro-to-git)
