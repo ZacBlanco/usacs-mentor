@@ -190,11 +190,86 @@ You can see here in our module POM has a different structure where the library d
 
 At the root of the project to compile and run tests (and also download any necessary dependencies) you can run
 
-
     mvn clean install
 
 `mvn` is the command to invoke maven, then we specify two _targets_ or actions to complete in order.
 
 `clean` will remove any old compiled files. `install` will compile the code, run all the necessary unit tests and then install the new binaries into the target location.
 
+We won't go much deeper into maven than this, but you should understand that this is just the tip of the iceberg in terms of what maven is able to do. Just know that it's capable of much more but this is all we'll do with it for now.
+
+## Unit Testing
+
+Now to the (arguably!) fun part - we're going to go over 1.) What exactly it means to unit test, 2.) How to write and Invoke unit tests, and 3.) Best practices for unit test. 
+
+Basically **unit testing** means breaking down the code into the smallest pieces that we can possibly test, and then individually testing each of these mini blocks of code.
+
+From there it once we test the smallest bits of code, we can move up the tree and test the pieces of code and methods that get combined together. This can make tracking down and finding errors very easy. It can also help find where new features or changes in code behavior are produced as well.
+
+For example, if we [borrow from this Microsoft article on unit testing](https://msdn.microsoft.com/en-us/library/aa292197(v=vs.71).aspx), imagine you have two pieces of code or two methods. Each method is used in conjunction together to perform some kind of task. But when you try to run that task it doesn't completely properly or it terminates improperly. How can you identify what caused the behavior?
+
+- Did the behavior come from method 1?
+- Did the behavior come from method 2?
+- Did the behavior come from where we combined both methods?
+- Was it caused by the interface?
+- Was there an error in both methods?
+
+Searching for the cause of these errors and testing manually can actually be a huge time sink and I'm sure most of us have experienced it. When you're writing code, unit tests can end up taking lots of time and/or resources, but in the end and in crucial situations they become incredibly useful for keeping software working in proper order. Especially large pieces of software which are being changed constantly.
+
+Typically when writing unit tests we'll need to write drivers or code stubs in order to set up and tear down data and other pieces. While these stubs and tests can sometimes take time to write, in the end they can end up making the project better, in terms of usability, and much quicker to develop for.
+
+Really it's quite as simple as that.
+
+### Unit Testing Best Practices
+
+This section is going to cover some of the best practices for writing and maintaining unit tests, and how to make them useful in your project. Note that there is no single method that will work best for everyone, nor is there really a "definitive" guide to how to write great unit tests, so most of these are tips I've found through my own experience and my searches of the Internet that I felt were most valuable.
+
+One concept that people sometimes use is called code coverage 
+
+#### 1. Unit Tests Should be Individual
+
+Unit tests should be able to run independently of one another. They shouldn't depend on other tests to run before or after in order to pass.
+
+#### 2. Unit Tests Should Test Conditions Individually
+
+This will lead to more tests, but it will allow you to pinpoint errors more easily than if you included multiple cases within a single test.
+
+#### 3. Unit Tests Should Be Thorough
+
+You should try to write your tests so that at least every line of code is executed at once. But make sure that your tests are meaningful.
+
+#### 4. Unit Tests Should be Stable
+
+Make sure that the unit tests don't depend on random factors. Your tests should be able to pass 99.999% of the time no matter what system you're running. 
+
+#### 5. Every Test Needs a Porpoise (Or Two)
+
+![Porpoise](https://a2ua.com/porpoise/porpoise-003.jpg)
+
+But seriously don't write tests which cover a specific condition twice. Testing the same thing twice will do you no good. Make sure each test has a known purpose. An even better practice is to write a comment or two for each test describing why it's needed.
+
+
+We could talk some more about TDD (Test Driven Development) but we're not going to get to into that right now. Just know it's a way of building software which is driven by first writing unit tests, and then writing the code to make sure the tests pass. It helps to write good blocks of software. 
+
+### Writing Unit Tests
+
+So now we've learned all about unit tests, but how the heck do we actually write them??
+
+In this section we'll just go over the python API for the unit tests but I suggest
+
+### Unit Test Exercises
+
+Great! Now we've covered the basics of unit tests. Now we have two exercises on writing some unit tests to cover a couple classes that I've created as exercises in Python and Java. You can choose to do both or either.
+
+The method implementations may or may not have errors. But you should write a test to check every case and make sure each one passes
+
+To run the tests in Python
+
+    cd ./python/tests/
+    python3 -m unittest 
+
+To Run the tests in Java:
+
+    cd ./java/
+    mvn clean install
 

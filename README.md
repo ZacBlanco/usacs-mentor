@@ -7,4 +7,5 @@ Each folder in the root of the repository contains a new lesson and has a README
 
 ## Mini-Lessons
 
-- [Introduction to Git](intro-to-git)
+- [Introduction to Git](intro-to-git/)
+- [Unit Testing](testing-code/)
