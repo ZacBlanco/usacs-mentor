@@ -255,7 +255,81 @@ We could talk some more about TDD (Test Driven Development) but we're not going 
 
 So now we've learned all about unit tests, but how the heck do we actually write them??
 
-In this section we'll just go over the python API for the unit tests but I suggest
+In this section we'll just go over the python API for the unit tests. Its similar to JUnit which is one of the more popular testing frameworks in Java.
+
+We're also going to assume that we're using python3 v3.4+ to run the application and the standard libraries which going along with that distribution.
+
+In order to write a test you need to start with a file to write your tests. A good idea is to name the files with the prefix `test_` and then which ever python you are testing as the postfix.
+
+So something like `test_btree.py`
+
+Inside each test file we'll have something similar to the following:
+
+```python
+import unittest, sys
+sys.path.append('..') # Used to access python files outside of the test dir
+
+class TestBTree(unittest.TestCase):
+
+    def test_one(self): # A first test case
+        # Do some stuff
+        # Assert a condition or two.
+
+    def test_two(self): # A second test case
+        # More stuff
+        # More assertion
+
+
+    # ....etc....
+
+```
+
+Inside of each test you can use what we call **assertions** in order to check if variables have certain values or not. If an assertion fails, the entire test will fail. The failed test will then be reported. This is how you can find the different errors in your code.
+
+[A list of assertions can be found here in the Python 3 docs](https://docs.python.org/3/library/unittest.html#unittest.TestCase.assertEqual)
+
+Below is an example set of tests for a simple stack data structure.
+
+```python
+import unittest
+
+class TestStack(unittest.TestCase):
+
+    def test_empty_stack(self):
+        s1 = []
+        self.assertEqual(s1.pop(), None)
+
+    def test_add_one(self):
+        s1 = []
+        s1.push(5)
+        self.assertTrue(len(s1) == 1)
+        s1.pop()
+        self.assertTrue(len(s1) == 0)
+    
+    def test_single_pop(self):
+        s1 = [5]
+        self.assertEqual(len(s1), 1)
+        self.assertEqual(s1.pop(), 5)
+
+    def test_add_many(self):
+        s1 = []
+        for i in range(20):
+            s1.push(i)
+        self.assertEqual(len(s1), 20)
+
+    def test_add_none(self):
+        s1 = []
+        s1.push(None)
+        self.assertEqual(len(s1), None)
+
+```
+
+You can see in the above example how we use the assertions in order to run our tests. I encourage you to see if you can change a couple of these tests, make them fail, and then try to fix them again.
+
+You can run this test file by `cd`ing into the `python/tests` directory and running
+
+    python3 -m unittest test_stack.py
+
 
 ### Unit Test Exercises
 
