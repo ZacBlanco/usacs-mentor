@@ -1,6 +1,6 @@
 class BTree:
 
-    def __init(self):
+    def __init__(self):
         self.root = None
 
     def insert(self, node):
